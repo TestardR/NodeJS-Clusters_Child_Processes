@@ -9,3 +9,7 @@ http
   .listen(8080, () => {
     console.log(`Started process ${pid}`);
   });
+
+process.on('message', msg => {
+  console.log(`Message from master: ${msg}`);
+});

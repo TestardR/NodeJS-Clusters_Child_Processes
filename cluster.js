@@ -8,6 +8,11 @@ if (cluster.isMaster) {
   for (let i = 0; i < cpus; i++) {
     cluster.fork();
   }
+
+  console.dir(cluster.workers, { depth: 0 });
+  Object.values(cluster.workers).forEach(worker => {
+    worker.send(`Hello Worker ${worker.id}`);
+  });
 } else {
   require('./server');
 }
